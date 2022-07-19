@@ -1,6 +1,6 @@
-FROM agners/archlinuxarm
+FROM archlinux:base-devel
 
-RUN pacman -Sy --noconfirm base-devel git sudo 
+RUN pacman -Sy --noconfirm git sudo 
 
 # so with nopasswd for klippy
 RUN echo 'klippy ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/klippy 
