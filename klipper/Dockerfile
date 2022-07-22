@@ -1,11 +1,12 @@
 FROM ubuntu:22.04
  
-RUN apt-get update && apt-get install -y git virtualenv python3 libffi-dev build-essential libncurses-dev libusb-dev avrdude gcc-avr binutils-avr avr-libc stm32flash libnewlib-arm-none-eabi gcc-arm-none-eabi binutils-arm-none-eabi libusb-1.0 dfu-util
+RUN apt-get update && apt-get install -y git virtualenv python3-dev libffi-dev build-essential libncurses-dev libusb-dev avrdude gcc-avr binutils-avr avr-libc stm32flash libnewlib-arm-none-eabi gcc-arm-none-eabi binutils-arm-none-eabi libusb-1.0 dfu-util
 
 WORKDIR /opt
-RUN git clone --depth 1 https://github.com/Klipper3d/klipper.git
+RUN git clone https://github.com/Klipper3d/klipper.git
+RUN git checkout dd03cca49b920762f959d8cce047a6cc4debf60b
 
-RUN virtualenv -p python2-dev pyenv && pyenv/bin/pip install -r klipper/scripts/klippy-requirements.txt
+RUN virtualenv -p python2 pyenv && pyenv/bin/pip install -r klipper/scripts/klippy-requirements.txt
 
 RUN mkdir /opt/logs
 VOLUME /opt/logs
