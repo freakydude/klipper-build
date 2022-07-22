@@ -1,0 +1,23 @@
+services:
+  klipper:
+    build: klipper/.
+    container_name: klipper
+    restart: unless-stopped
+    volumes:
+      - ./configs:/opt/configs
+      - ./logs:/opt/logs
+      - ./klipper/socket-api:/opt/socket-api
+    devices:
+      - /dev/null:/dev/ttyACM0
+
+  moonraker:
+    build: moonraker/.
+    container_name: moonraker
+    restart: unless-stopped
+    volumes:
+      - ./configs:/opt/configs
+      - ./logs:/opt/logs
+      - ./moonraker/db:/opt/db
+      - ./klipper/socket-api:/opt/socket-api
+    ports:
+      - 7125:7125
