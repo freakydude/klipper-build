@@ -21,3 +21,12 @@ services:
       - ./klipper/socket-api:/opt/socket-api
     ports:
       - 7125:7125
+
+  mainsail:
+    image: ghcr.io/mainsail-crew/mainsail:v2.2.1 
+    container_name: mainsail
+    restart: unless-stopped
+    volumes:
+      - ./mainsail/config.json:/usr/share/nginx/html/config.json
+    ports:
+      - 80:80
