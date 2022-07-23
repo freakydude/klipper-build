@@ -57,7 +57,7 @@ services:
     volumes:
       - /dev/video0:/dev/video0
     environment:
-      - RESOLUTION="1280x720"    
+      - RESOLUTION=1280x720
     ports:
       - 8080:8080
     networks:
