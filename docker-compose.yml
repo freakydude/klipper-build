@@ -48,6 +48,20 @@ services:
     networks:
       - klipper
 
+  mjpgstreamer:
+    build: mjpgstreamer/.
+    container_name: mjpgstreamer
+    hostname: mjpgstreamer
+    restart: unless-stopped
+    volumes:
+      - /dev/video0:/dev/video0
+    environment:
+      - RESOLUTION="1280x720"    
+    ports:
+      - 8081:8080
+    networks:
+      - klipper
+
 volumes:
   klipper-socket-api:
   moonraker-db:
