@@ -58,7 +58,7 @@ services:
     environment:
       - RESOLUTION="1280x720"    
     ports:
-      - 8081:8080
+      - 8080:8080
     networks:
       - klipper
 
