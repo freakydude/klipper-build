@@ -41,8 +41,8 @@ services:
     depends_on:
       - moonraker
     restart: unless-stopped
-    # volumes:
-    #  - ./mainsail/config.json:/usr/share/nginx/html/config.json
+    volumes:
+      - ./mainsail/config.json:/usr/share/nginx/html/config.json
     ports:
       - 80:80
     networks:
