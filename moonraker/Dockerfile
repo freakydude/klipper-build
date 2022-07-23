@@ -7,7 +7,11 @@ VOLUME /opt/logs /opt/configs /opt/gcodes /opt/db /opt/socket-api /opt/klipper
 
 WORKDIR /opt
 RUN virtualenv -p python3 pyenv
-RUN git clone --depth 1 https://github.com/Arksine/moonraker.git
+
+RUN git clone https://github.com/Arksine/moonraker.git
+WORKDIR /opt/moonraker
+RUN git checkout 16327ff551ad56ae9e6de799a2f18a195b830917
+WORKDIR /opt
 
 RUN pyenv/bin/pip install -r moonraker/scripts/moonraker-requirements.txt
 
