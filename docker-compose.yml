@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./configs:/opt/configs
-      - ./klipper-env:/opt/klipper
+      - klipper-env:/opt/klipper
       - ./logs:/opt/logs
       - klipper-socket-api:/opt/socket-api
     devices:
@@ -25,7 +25,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./configs:/opt/configs
-      - ./klipper-env:/opt/klipper
+      - klipper-env:/opt/klipper
       - ./logs:/opt/logs
       - moonraker-db:/opt/db
       - klipper-socket-api:/opt/socket-api
@@ -41,8 +41,8 @@ services:
     depends_on:
       - moonraker
     restart: unless-stopped
-    volumes:
-     - ./mainsail/config.json:/usr/share/nginx/html/config.json
+    # volumes:
+    #  - ./mainsail/config.json:/usr/share/nginx/html/config.json
     ports:
       - 80:80
     networks:
@@ -51,6 +51,7 @@ services:
 volumes:
   klipper-socket-api:
   moonraker-db:
+  klipper-env: 
 
 networks:
   klipper: 
