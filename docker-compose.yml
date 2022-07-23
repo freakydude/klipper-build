@@ -2,6 +2,7 @@ services:
   klipper:
     build: klipper/.
     container_name: klipper
+    hostname: klipper
     restart: unless-stopped
     volumes:
       - ./configs:/opt/configs
@@ -9,10 +10,13 @@ services:
       - klipper-socket-api:/opt/socket-api
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
+    networks:
+      - klipper      
 
   moonraker:
     build: moonraker/.
     container_name: moonraker
+    hostname: moonraker
     depends_on:
       - klipper
     restart: unless-stopped
@@ -23,10 +27,13 @@ services:
       - klipper-socket-api:/opt/socket-api
     ports:
       - 7125:7125
+    networks:
+      - klipper      
 
   mainsail:
     image: ghcr.io/mainsail-crew/mainsail:v2.2.1 
     container_name: mainsail
+    hostname: mainsail
     depends_on:
       - moonraker
     restart: unless-stopped
@@ -34,6 +41,11 @@ services:
 #      - ./mainsail/config.json:/usr/share/nginx/html/config.json
     ports:
       - 80:80
+    networks:
+      - klipper
 
 volumes:
   klipper-socket-api:
+
+networks:
+  klipper:
