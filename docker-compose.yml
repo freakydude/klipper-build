@@ -8,6 +8,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./configs:/opt/configs
+      - ./gcodes:/opt/gcodes
       - klipper-env:/opt/klipper
       - ./logs:/opt/logs
       - klipper-socket-api:/opt/socket-api
@@ -25,6 +26,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./configs:/opt/configs
+      - ./gcodes:/opt/gcodes
       - klipper-env:/opt/klipper
       - ./logs:/opt/logs
       - moonraker-db:/opt/db
