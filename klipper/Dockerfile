@@ -9,13 +9,13 @@ VOLUME /opt/gcodes
 VOLUME /opt/socket-api
 
 WORKDIR /opt
+RUN virtualenv -p python3 pyenv
+
 RUN git clone https://github.com/Klipper3d/klipper.git
 WORKDIR /opt/klipper
 RUN git checkout dd03cca49b920762f959d8cce047a6cc4debf60b
 WORKDIR /opt
 
-RUN virtualenv -p python3 pyenv && pyenv/bin/pip install -r klipper/scripts/klippy-requirements.txt
-
-
+RUN pyenv/bin/pip install -r klipper/scripts/klippy-requirements.txt
 
 CMD [ "/opt/pyenv/bin/python", "/opt/klipper/klippy/klippy.py" ,"/opt/configs/klippy.cfg", "-l", "/opt/logs/klippy.log", "-a", "/opt/socket-api/klippy.socket"]
