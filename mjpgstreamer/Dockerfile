@@ -14,4 +14,4 @@ WORKDIR /opt/mjpg-streamer/mjpg-streamer-experimental
 # build mjpg-streamer
 RUN make USE_LIBV4L2=true
 
-CMD /opt/mjpg_streamer -i "/opt/input_uvc.so -r ${RESOLUTION:-1920x1080}" -o "/opt/output_http.so -w /opt/www"
+CMD ./mjpg_streamer -i "./input_uvc.so -r ${RESOLUTION:-1920x1080}" -o "./output_http.so -w ./www"
