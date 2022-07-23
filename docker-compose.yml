@@ -53,6 +53,7 @@ services:
     container_name: mjpgstreamer
     hostname: mjpgstreamer
     restart: unless-stopped
+    privileged: true
     volumes:
       - /dev/video0:/dev/video0
     environment:
