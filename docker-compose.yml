@@ -13,6 +13,8 @@ services:
   moonraker:
     build: moonraker/.
     container_name: moonraker
+    depends_on:
+      - klipper
     restart: unless-stopped
     volumes:
       - ./configs:/opt/configs
@@ -25,6 +27,8 @@ services:
   mainsail:
     image: ghcr.io/mainsail-crew/mainsail:v2.2.1 
     container_name: mainsail
+    depends_on:
+      - moonraker
     restart: unless-stopped
     volumes:
       - ./mainsail/config.json:/usr/share/nginx/html/config.json
