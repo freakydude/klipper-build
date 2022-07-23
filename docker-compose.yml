@@ -25,7 +25,7 @@ services:
     volumes:
       - ./configs:/opt/configs
       - ./logs:/opt/logs
-      - ./moonraker/db:/opt/db
+      - moonraker-db:/opt/db
       - klipper-socket-api:/opt/socket-api
     ports:
       - 7125:7125
@@ -33,7 +33,7 @@ services:
     #   - klipper      
 
   mainsail:
-    image: ghcr.io/mainsail-crew/mainsail:v2.2.1 
+    image: ghcr.io/mainsail-crew/mainsail:latest
     container_name: mainsail
     hostname: mainsail
     depends_on:
@@ -48,6 +48,7 @@ services:
 
 volumes:
   klipper-socket-api:
+  moonraker-db:
 
 # networks:
 #   klipper: 
