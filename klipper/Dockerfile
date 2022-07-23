@@ -22,4 +22,4 @@ VOLUME /opt/gcodes
 RUN mkdir /opt/socket-api
 VOLUME /opt/socket-api
 
-CMD [ "/opt/pyenv/bin/python", "/opt/klipper/klippy/klippy.py" ,"/opt/configs/printer.cfg", "-l", "/opt/logs/klippy.log", "-a", "/opt/socket-api/klippy.socket"]
+CMD [ "/opt/pyenv/bin/python", "/opt/klipper/klippy/klippy.py" ,"/opt/configs/klippy.cfg", "-l", "/opt/logs/klippy.log", "-a", "/opt/socket-api/klippy.socket"]
