@@ -8,12 +8,13 @@ services:
     restart: unless-stopped
     volumes:
       - ./configs:/opt/configs
+      - ./klipper:/opt/klipper
       - ./logs:/opt/logs
       - klipper-socket-api:/opt/socket-api
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
-    # networks:
-    #   - klipper      
+    networks:
+      - klipper      
 
   moonraker:
     build: moonraker/.
@@ -24,13 +25,14 @@ services:
     restart: unless-stopped
     volumes:
       - ./configs:/opt/configs
+      - ./klipper:/opt/klipper
       - ./logs:/opt/logs
       - moonraker-db:/opt/db
       - klipper-socket-api:/opt/socket-api
     ports:
       - 7125:7125
-    # networks:
-    #   - klipper      
+    networks:
+      - klipper      
 
   mainsail:
     image: ghcr.io/mainsail-crew/mainsail:latest
@@ -43,13 +45,13 @@ services:
      - ./mainsail/config.json:/usr/share/nginx/html/config.json
     ports:
       - 80:80
-    # networks:
-    #   - klipper
+    networks:
+      - klipper
 
 volumes:
   klipper-socket-api:
   moonraker-db:
 
-# networks:
-#   klipper: 
+networks:
+  klipper: 
     
