@@ -59,7 +59,7 @@ services:
     volumes:
       - /dev/video0:/dev/video0
     environment:
-      INPUTUVC: "-r 1280x720 -f 60"
+      INPUTUVC: "-r 1920x1080 -f 30"
       V4L2CTRLS: "focus_automatic_continuous=0,focus_absolute=350"
     ports:
       - 8080:8080
