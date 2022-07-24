@@ -59,7 +59,8 @@ services:
     volumes:
       - /dev/video0:/dev/video0
     environment:
-      - RESOLUTION=1280x720
+      INPUTUVC: "-r 1280x720 -f 60"
+      V4L2CTRLS: "focus_automatic_continuous=0,focus_absolute=350"
     ports:
       - 8080:8080
     networks:

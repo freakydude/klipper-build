@@ -2,7 +2,7 @@ FROM alpine:latest
 
 # install build tools
 RUN apk update
-RUN apk add git make cmake g++ linux-headers libjpeg-turbo-dev imagemagick v4l-utils-dev
+RUN apk add git make cmake g++ linux-headers libjpeg-turbo-dev imagemagick v4l-utils-dev v4l-utils
 
 WORKDIR /opt
 
@@ -14,4 +14,4 @@ WORKDIR /opt/mjpg-streamer/mjpg-streamer-experimental
 # build mjpg-streamer
 RUN make USE_LIBV4L2=true
 
-CMD ./mjpg_streamer -i "./input_uvc.so -r ${RESOLUTION:-1920x1080}" -o "./output_http.so -w ./www"
+CMD /usr/bin/v4l2-ctl -d /dev/video0 --set-ctrl=${V4L2CTRLS} && ./mjpg_streamer -i "./input_uvc.so ${INPUTUVC}" -o "./output_http.so -w ./www"
