@@ -15,7 +15,7 @@ services:
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
     networks:
-      - klipper      
+      - klipper
 
   moonraker:
     build: moonraker/.
@@ -34,7 +34,7 @@ services:
     ports:
       - 7125:7125
     networks:
-      - klipper      
+      - klipper
 
   mainsail:
     image: ghcr.io/mainsail-crew/mainsail:latest
@@ -68,8 +68,8 @@ services:
 volumes:
   klipper-socket-api:
   moonraker-db:
-  klipper-env: 
+  klipper-env:
 
 networks:
-  klipper: 
-    
+  klipper:
+
