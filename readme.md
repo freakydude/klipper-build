@@ -1,8 +1,8 @@
 ```sh
-docker build -t klipper .
+git clone https://github.com/freakydude/klipper-build.git
 
-docker run -it -v /home/frank/Freakydude/klipper/.config:/home/klippy/klipper/.config klipper
-docker run -it klipper
+cd klipper-build
+docker-compose up -d --build
 ```
 
 
