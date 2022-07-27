@@ -1,16 +1,17 @@
 version: "3.9"
 
 services:
-  klipper:
-    build: klipper/.
-    container_name: klipper
-    hostname: klipper
+  klipper3d:
+    image: freakyd/klipper3d
+    build: klipper3d/.
+    container_name: klipper3d
+    hostname: klipper3d
     restart: unless-stopped
     volumes:
       - ./configs:/opt/configs
       - ./gcodes:/opt/gcodes
       - klipper-env:/opt/klipper
-      - ./logs:/opt/logs
+      - /tmp/logs:/opt/logs
       - klipper-socket-api:/opt/socket-api
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
@@ -18,6 +19,7 @@ services:
       - klipper
 
   moonraker:
+    image: freakyd/moonraker
     build: moonraker/.
     container_name: moonraker
     hostname: moonraker
@@ -28,7 +30,7 @@ services:
       - ./configs:/opt/configs
       - ./gcodes:/opt/gcodes
       - klipper-env:/opt/klipper
-      - ./logs:/opt/logs
+      - /tmp/logs:/opt/logs
       - moonraker-db:/opt/db
       - klipper-socket-api:/opt/socket-api
     ports:
@@ -51,6 +53,7 @@ services:
       - klipper
 
   mjpgstreamer:
+    image: freakyd/mjpgstreamer
     build: mjpgstreamer/.
     container_name: mjpgstreamer
     hostname: mjpgstreamer
@@ -59,7 +62,7 @@ services:
     volumes:
       - /dev/video0:/dev/video0
     environment:
-      INPUTUVC: "-r 1920x1080 -f 30"
+      INPUTUVC: "-r 1280x720 -f 30"
       V4L2CTRLS: "focus_automatic_continuous=0,focus_absolute=350"
     ports:
       - 8080:8080

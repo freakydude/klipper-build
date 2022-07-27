@@ -1,2 +1,4 @@
 *.log
 klippy_uds
+logs/
+gcodes/
