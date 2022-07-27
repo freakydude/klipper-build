@@ -14,4 +14,4 @@ WORKDIR /opt/mjpg-streamer/mjpg-streamer-experimental
 # build mjpg-streamer
 RUN make USE_LIBV4L2=true
 
-CMD ./mjpg_streamer -i "./input_uvc.so ${INPUTUVC}" -o "./output_http.so -w ./www" && /usr/bin/v4l2-ctl -d /dev/video0 --set-ctrl=${V4L2CTRLS}
+CMD ./mjpg_streamer -i "./input_uvc.so ${INPUTUVC}" -o "./output_http.so -w ./www" && /usr/bin/v4l2-ctl --set-ctrl "${V4L2CTRLS}"

@@ -24,7 +24,7 @@ services:
     container_name: moonraker
     hostname: moonraker
     depends_on:
-      - klipper
+      - klipper3d
     restart: unless-stopped
     volumes:
       - ./configs:/opt/configs
@@ -58,12 +58,11 @@ services:
     container_name: mjpgstreamer
     hostname: mjpgstreamer
     restart: unless-stopped
-    privileged: true
-    volumes:
+    devices:
       - /dev/video0:/dev/video0
     environment:
-      INPUTUVC: "-r 1280x720 -f 30"
-      V4L2CTRLS: "focus_automatic_continuous=0,focus_absolute=350"
+      INPUTUVC: "-r 1280x720"
+      V4L2CTRLS: "focus_automatic_continuous=0,focus_absolute=333"
     ports:
       - 8080:8080
     networks:

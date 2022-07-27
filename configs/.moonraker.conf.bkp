@@ -31,7 +31,7 @@ gcode_store_size = 1000
 [history]
 
 [machine]
-provider = systemd_cli
+provider = none
 
 [zeroconf]
 
