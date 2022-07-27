@@ -2,3 +2,6 @@
 klippy_uds
 logs/
 gcodes/
+*.3mf
+*.stl
+*.bkp
